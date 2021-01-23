@@ -12,7 +12,7 @@ namespace sante1
 			private int id;
 			private String date;
 			private String Heure;
-		private string HeureFin;
+			private string HeureFin;
 
 
 			public Creneau(int id, String date, String Heure,string HeureFin)

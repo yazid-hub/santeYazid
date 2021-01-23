@@ -74,8 +74,9 @@
             <h1 style="margin-top:-180px;">Tableau de bord</h1>
           </div>
          
-          
+          <div class="cardPrincipal">
             <div class="card1" id="dispo">
+
              
                <!--form area start-->
 		<div class="form" style="margin-top:60px; width:50%;">
@@ -93,6 +94,7 @@
             </div>
 			<!--login form end-->
         </div>
+              </div>
       </section>
     </main>
       

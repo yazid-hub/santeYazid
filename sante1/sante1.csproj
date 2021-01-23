@@ -143,6 +143,7 @@
   <ItemGroup>
     <Compile Include="Bdd.cs" />
     <Compile Include="Creneau.cs" />
+    <Compile Include="Medecin_Creneau.cs" />
     <Compile Include="Personel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
