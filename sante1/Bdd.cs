@@ -96,6 +96,36 @@ namespace sante1
 
             }
         }
+        public void insertMedecin_Creneu(sante1.Medecin_Creneau unMedecin_Creneau)
+        {
+            string requete = "";
+            try
+            {
+                this.maConnexion.Open();
+
+                requete = "insert into Medecin_Creneau  values ( @id, @numpers);";
+
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+
+                cmd.CommandText = requete;
+
+                //correspondance des parametres et des valeurs
+                cmd.Parameters.AddWithValue("@id", unMedecin_Creneau.ID);
+                cmd.Parameters.AddWithValue("@numpers", unMedecin_Creneau.NUMPERS);
+              
+
+                //on execute la requete
+                cmd.ExecuteNonQuery();
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur d'execution de la requete :" + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+        }
 
 
     }
