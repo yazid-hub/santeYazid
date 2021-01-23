@@ -127,6 +127,48 @@ namespace sante1
             }
         }
 
+        public Medecin_Creneau selectWhereMedecinCreneau(int numpers)
+        {
+            Medecin_Creneau unPlaning = null;
+            string requete = "select * from Medecin_Creneau where  numpers = @numpers ; ";
+            try
+            {
+                //ouverture de la connexion Mysql
+                this.maConnexion.Open();
+                //creation de la commande SQL
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+                cmd.CommandText = requete;
+                cmd.Parameters.AddWithValue("@numpers", numpers);
+
+                //parcourir les enregistrements de la table
+                DbDataReader unReader = cmd.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        if (unReader.Read())
+                        {
+                            unPlaning = new Medecin_Creneau(
+                               unReader.GetInt32(0), unReader.GetInt32(1)
+                               );
+                        }
+                    }
+                }
+                finally
+                {
+                    Console.WriteLine("Erreur d'extraction des données de la table ");
+                }
+                //fermeture de la connexion 
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur d'exécution de la requete :" + requete);
+                Console.WriteLine(exp.Message);
+            }
+            return unPlaning;
+        }
+
 
     }
 }
