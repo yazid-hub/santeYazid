@@ -8,6 +8,9 @@
     <title>Profile Medecin</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+         <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="Style.css">
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -40,11 +43,11 @@
 		    </nav>
 		<!--Fin Menu Principale-->
 
+     
       
-      
-    <main>
-      <section class="glass">
-        <div class="dashboard">
+
+
+      <div class="dashboard" id="fix">
           <div class="user">
             <img src="/img/88.jpg" alt="" />
             <h3><a href="#">Yazid NAIT ALLOU</a></h3>
@@ -53,7 +56,7 @@
           <div class="links">
             <div class="link">
               <img src="./images/twitch.png" alt="" />
-              <h2><a href="#">EMPLOIS DE TEMPS </a></h2>
+              <h2><a href="#planning">EMPLOIS DE TEMPS </a></h2>
             </div>
             <div class="link">
               <img src="./images/steam.png" alt="" />
@@ -61,43 +64,190 @@
             </div>
             <div class="link">
               <img src="/img/99.jpg" alt="" />
-              <h2><a href="#">FICHE DE PAYS</a></h2>
+              <h2><a href="#fichePaie">FICHE DE PAYS</a></h2>
             </div>
             <div class="link">
               <img src="./images/library.png" alt="" />
-              <h2><a href="#">Documents</a></h2>
+              <h2><a href="#document">Documents</a></h2>
             </div>
           </div>
         </div>
+      
+    <main>
+        
+        
+
+
+      <section class="glass">
         <div class="sante">
           <div class="status">
             <h1 style="margin-top:-180px;">Tableau de bord</h1>
           </div>
+
+
+           
          
           <div class="cardPrincipal">
-            <div class="card1" id="dispo">
 
-             
-               <!--form area start-->
+
+
+            <div class="card1" id="planning">
+		
+     <!-- SCHEDULE -->
+     <section class="schedule section" id="schedule">
+               <div class="container">
+                    <div class="row">
+
+                            <div class="col-lg-12 col-12 text-center">
+                                <h6 data-aos="fade-up"></h6>
+
+                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Tableau de bord</h2>
+                             </div>
+
+                             <div class="col-lg-12 py-5 col-md-12 col-12">
+                                 <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
+
+                                     <thead class="thead-light">
+                                         <th><i class="fa fa-calendar"></i></th>
+                                         <th>Mon</th>
+                                         <th>Tue</th>
+                                         <th>Wed</th>
+                                         <th>Thu</th>
+                                         <th>Fri</th>
+                                         <th>Sat</th>
+                                     </thead>
+
+                                     <tbody>
+                                         <tr>
+                                            <td><small>7:00 am</small></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>7:00 am - 9:00 am</span>
+                                            </td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>7:00 am - 9:00 am</span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>7:00 am - 9:00 am</span>
+                                            </td>
+                                              <td></td>
+                                            
+                                         </tr>
+
+                                         <tr>
+                                            <td><small>9:00 am</small></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>8:00 am - 9:00 am</span>
+                                            </td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>8:00 am - 9:00 am</span>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>8:00 am - 9:00 am</span>
+                                            </td>
+                                         </tr>
+
+                                         <tr>
+                                            <td><small>11:00 am</small></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>11:00 am - 2:00 pm</span>
+                                            </td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>11:30 am - 3:30 pm</span>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>11:50 am - 5:20 pm</span>
+                                                <td></td>
+                                            </td>
+                                         </tr>
+
+                                         <tr>
+                                            <td><small>2:00 pm</small></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>2:00 pm - 4:00 pm</span>
+                                            </td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>3:00 pm - 6:00 pm</span>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>6:00 pm - 9:00 pm</span>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <strong>travail</strong>
+                                                <span>5:00 pm - 7:00 pm</span>
+                                            </td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+
+                    </div>
+               </div>
+     </section>
+
+        </div>
+
+                          <div class="card1" id="dispo">
 		<div class="form" style="margin-top:60px; width:50%;">
-			<!--login form start-->
 			<form class="login-form" action="" method="post">
-               
-				<i class="far fa-calendar-plus" style="color:green;"></i><br />
+                <i class="far fa-calendar-plus" style="color:green;"></i><br />
 				Date :  <input class="user-input"  type="date" name="date" placeholder="date" required ><br />
 				Heure début:<input class="user-input" type="time" name="heure" placeholder="heure" required><br />
 				Heure Fin :<input class="user-input" type="time" name="heureFin" placeholder="heure" required>
-			<input class="btn" type="submit" name="Ajouter" value="Ajouter">
-				
+			<input class="btn" type="submit" name="Ajouter" value="Ajouter">	
 			</form>
-
             </div>
-			<!--login form end-->
         </div>
+
+                          <div class="card1" id="fichePaie">
+		
+
+
+
+        </div>
+
+                                        <div class="card1" id="document">
+		<div class="form" style="margin-top:60px; width:50%;">
+			<form class="login-form" action="" method="post">
+                <i class="far fa-calendar-plus" style="color:green;"></i><br />
+				Date :  <input class="user-input"  type="date" name="date" placeholder="date" required ><br />
+				Heure début:<input class="user-input" type="time" name="heure" placeholder="heure" required><br />
+				Heure Fin :<input class="user-input" type="time" name="heureFin" placeholder="heure" required>
+			<input class="btn" type="submit" name="Ajouter" value="Ajouter">	
+			</form>
+            </div>
+        </div>
+             
+          
+
+
               </div>
-      </section>
-    </main>
-      
+              </div>
+            
+          
+     </section>
+      </main>
+
  
 		<% 
 	
@@ -127,13 +277,15 @@ main {
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
  
-    display: flex;
+    display:flex;
     align-items: center;
     justify-content: center;
     margin-top :100px;
+    
     }
 
 .glass {
+
     background: white;
     min-height: 80vh;
     width: 100%;
@@ -147,16 +299,25 @@ main {
 
 
 
-
 .dashboard {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    text-align: center;
+    width: 30%;
+    height:100%;
     background: linear-gradient( to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3) );
     border-radius: 2rem;
+    z-index: 999;
+    backdrop-filter: blur(0.5rem);
+     font-family: "Poppins", sans-serif;
+ 
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top :-20px;
+    
+
+    flex-direction: column;
+    justify-content: space-evenly;
+position:fixed;   
+    
 }
 
 .link {
@@ -191,7 +352,7 @@ a{
     }
 
 .sante {
-    margin: 5rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -208,7 +369,9 @@ a{
     height:750px;
     width:1200px;
 }
-
+.cardPrincipal{
+    margin-left : 650px; 
+}
 
 </style>
   </body>
