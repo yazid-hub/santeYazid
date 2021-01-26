@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EditeMedecin.aspx" />
     <Content Include="img\1.jpg" />
     <Content Include="img\11.jpg" />
     <Content Include="img\2.jpg" />

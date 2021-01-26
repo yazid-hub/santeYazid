@@ -293,7 +293,43 @@ namespace sante1
         }
 
 
-                public Medecin selectWhereMedecins(int numpers)
+
+        public void updateMedecin(sante1.Medecin unMedecin)
+        {
+            string requete = "";
+            try
+            {
+                this.maConnexion.Open();
+
+                requete = "update Medecin set nom= @nom, Prenom= @Prenom, Mail= @Mail , Adress =@Adress,ville = @Ville, Tel = @Tel, DateEmbauche=@DateEmbauche,mdp=@mdp where numpers = @numpers ;";
+
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+
+                cmd.CommandText = requete;
+
+                //correspondance des parametres et des valeurs
+                cmd.Parameters.AddWithValue("@nom", unMedecin.NOM);
+                cmd.Parameters.AddWithValue("@Prenom", unMedecin.PRENOM);
+                cmd.Parameters.AddWithValue("@Mail", unMedecin.MAIL);
+                cmd.Parameters.AddWithValue("@Adress", unMedecin.ADRESSE);
+                cmd.Parameters.AddWithValue("@Ville", unMedecin.VILLE);
+                cmd.Parameters.AddWithValue("@DateEmbauche", unMedecin.DATEEMBAUCHE);
+                cmd.Parameters.AddWithValue("@mdp", unMedecin.PASSWORD);
+                cmd.Parameters.AddWithValue("@numpers", unMedecin.numPers);
+
+                //on execute la requete
+                cmd.ExecuteNonQuery();
+
+                this.maConnexion.Close();
+                Console.WriteLine(unMedecin.numPers);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur d'execution de la requete :" + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
+        public Medecin selectWhereMedecins(int numpers)
         {
             Medecin unMedecin = null;
             string requete = "select * from personel where numpers = @numpers ;";
@@ -302,22 +338,14 @@ namespace sante1
                 // ouverture de la connexion mysq
                 this.maConnexion.Open();
                 MySqlCommand cmd = this.maConnexion.CreateCommand();
-
                 cmd.CommandText = requete;
-
-
-
                 cmd.Parameters.AddWithValue("@numpers", numpers);
-
                 DbDataReader unReader = cmd.ExecuteReader();
-
                 try
-
                 {
                     if (unReader.HasRows)
                     {
                         while (unReader.Read())
-
                         {
                             unMedecin = new Medecin(
 
@@ -325,24 +353,20 @@ namespace sante1
 
                             unReader.GetString(5), unReader.GetString(6), unReader.GetString(7), unReader.GetString(8));
                         }
-
                     }
-
                 }
-
                 finally
-                {
-                    Console.WriteLine("Erreur d'extraction des données de la table ");
-
-                }
+                      {
+                         Console.WriteLine("Erreur d'extraction des données de la table ");
+                     }
                 // fermeture de la connexion
-                this.maConnexion.Close();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
-            }
-            return unMedecin;
+                      this.maConnexion.Close();
+                 }
+                    catch (Exception)
+                         {
+                    Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
+                 }
+                     return unMedecin;
         }
 
     }

@@ -68,7 +68,7 @@
       <div class="dashboard" id="fix">
           <div class="user">
             <img src="/img/88.jpg" alt="" />
-            <h3><a href="#"><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM %></a></h3>
+            <h3><a href="EditeMedecin.aspx"><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM %></a></h3>
             <p><%=(unService==null)?" ":unService.LIBELLE %></p>
           </div>
           <div class="links">
@@ -226,21 +226,21 @@
         </div>
 
                           <div class="card1" id="dispo">
-		
+		<div class="creneau">
          <% string chaine = "<table border= 1 > <tr> <td>Date </td> <td> Heure debut </td> ";
              chaine += " <td> heure fin </td><td>Opération</td></tr> ";
         List<sante1.Creneau> lesCreneau = uneBDD.selectAllCreneau ();
         foreach(sante1.Creneau unCreneau in lesCreneau)
              {
-                 chaine += "<tr> <td>" + unCreneau.DATE+ "</td> <td> " + unCreneau.HEURE+ "</td> <td>" + unCreneau.HEUREFIN + "</td><td> ajouter</td> <td> " 
+                 chaine += "<tr> <td>" + unCreneau.DATE+ "</td> <td> " + unCreneau.HEURE+ "</td> <td>" + unCreneau.HEUREFIN + "</td><td> ajouter</td>  " 
 
-                + "<td>";
+                ;
              }
              chaine += "</table>";%>
 
         
                 <%= chaine %>
-
+            </div>
 
                                <% 
                                    
@@ -269,7 +269,7 @@
 
         </div>
 
-                                        <div class="card1" id="document">
+               <div class="card1" id="document">
 		<div class="form" style="margin-top:60px; width:50%;">
 			<form class="login-form" action="" method="post">
                 <i class="far fa-calendar-plus" style="color:green;"></i><br />
@@ -312,7 +312,10 @@
 /* Style profile*/
 
 
+.creneau td{
+    background :green;
 
+}
 
 
 
