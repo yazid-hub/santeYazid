@@ -10,10 +10,13 @@ namespace sante1
         private int id;
         private int numpers;
 
-        public Medecin_Creneau(int id, int numpers)
+        
+
+        public Medecin_Creneau(int id, int numpers, string date, string heure)
         {
             this.id = id;
             this.numpers = numpers;
+         
         }
 
 

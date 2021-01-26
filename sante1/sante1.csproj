@@ -143,9 +143,11 @@
   <ItemGroup>
     <Compile Include="Bdd.cs" />
     <Compile Include="Creneau.cs" />
+    <Compile Include="Medecin.cs" />
     <Compile Include="Medecin_Creneau.cs" />
     <Compile Include="Personel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />

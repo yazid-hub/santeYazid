@@ -127,48 +127,223 @@ namespace sante1
             }
         }
 
-        public Medecin_Creneau selectWhereMedecinCreneau(int numpers)
+        public List<Medecin_Creneau> selectWhereMedecinCreneau(int numpers)
         {
-            Medecin_Creneau unPlaning = null;
-            string requete = "select * from Medecin_Creneau where  numpers = @numpers ; ";
+            List<Medecin_Creneau> lesCreneauMedecin = new List<Medecin_Creneau>(); string requete = "select * from Medecin_creneau , creneau , medecin where creneau.id=medecin_creneau.id and medecin.numpers=medecin_creneau.numpers;";
             try
-            {
-                //ouverture de la connexion Mysql
+            {                // ouverture de la connexion mysql               
                 this.maConnexion.Open();
-                //creation de la commande SQL
                 MySqlCommand cmd = this.maConnexion.CreateCommand();
                 cmd.CommandText = requete;
-                cmd.Parameters.AddWithValue("@numpers", numpers);
-
-                //parcourir les enregistrements de la table
-                DbDataReader unReader = cmd.ExecuteReader();
-                try
+                // parcourir les enregistrement de la table
+                DbDataReader unReader = cmd.ExecuteReader(); try
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
-                            unPlaning = new Medecin_Creneau(
-                               unReader.GetInt32(0), unReader.GetInt32(1)
-                               );
+                            Medecin_Creneau unCreneauMedecin = new Medecin_Creneau(unReader.GetInt32(6), unReader.GetInt32(7), unReader.GetString(6),unReader.GetString(7)) ;
+                          
+                            lesCreneauMedecin.Add(unCreneauMedecin);
                         }
                     }
                 }
+                finally { Console.WriteLine("Erreur d'extraction des données de la table "); }                // fermeture de la connexion       
+                this.maConnexion.Close();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
+            }
+            return lesCreneauMedecin;
+        }
+
+
+
+        public Medecin selectWhereMedecin(string Mail, string mdp)
+        {
+            Medecin unMedecin = null;
+            string requete = "select * from personel where mail = @mail and mdp=@mdp ;";
+            try
+            {
+                // ouverture de la connexion mysq
+                this.maConnexion.Open();
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+
+                cmd.CommandText = requete;
+
+                cmd.Parameters.AddWithValue("@mail", Mail);
+
+                cmd.Parameters.AddWithValue("@mdp", mdp);
+
+                DbDataReader unReader = cmd.ExecuteReader();
+
+                try
+
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+
+                        {
+                            unMedecin = new Medecin(
+
+                            unReader.GetInt32(0), unReader.GetString(1), unReader.GetString(2), unReader.GetString(3), unReader.GetString(4),
+
+                            unReader.GetString(5), unReader.GetString(6), unReader.GetString(7), unReader.GetString(8));
+                        }
+
+                    }
+
+                }
+
                 finally
                 {
                     Console.WriteLine("Erreur d'extraction des données de la table ");
+
                 }
-                //fermeture de la connexion 
+                // fermeture de la connexion
                 this.maConnexion.Close();
             }
-            catch (Exception exp)
+            catch (Exception)
             {
-                Console.WriteLine("Erreur d'exécution de la requete :" + requete);
-                Console.WriteLine(exp.Message);
+                Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
             }
-            return unPlaning;
+            return unMedecin;
         }
 
+        
+        public Service selectWhereService(int numpers)
+        {
+            Service unService = null;
+            string requete = "select * from medecin ,  service where  service.numservice=medecin.numservice and numpers=@numpers ;";
+            try
+            {
+                // ouverture de la connexion mysq
+                this.maConnexion.Open();
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+
+                cmd.CommandText = requete;
+
+              
+
+                cmd.Parameters.AddWithValue("@numpers", numpers);
+
+                DbDataReader unReader = cmd.ExecuteReader();
+
+                try
+
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+
+                        {
+                            unService = new Service (
+
+                            unReader.GetInt32(0), unReader.GetString(3));
+                        }
+
+                    }
+
+                }
+
+                finally
+                {
+                    Console.WriteLine("Erreur d'extraction des données de la table ");
+
+                }
+                // fermeture de la connexion
+                this.maConnexion.Close();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
+            }
+            return unService;
+        }
+
+
+        public List<Creneau> selectAllCreneau()
+        {
+            List<Creneau> lesCreneau = new List<Creneau>(); string requete = "select * from creneau;"; 
+            try
+            {                // ouverture de la connexion mysql               
+                this.maConnexion.Open();               
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+                cmd.CommandText = requete;
+                // parcourir les enregistrement de la table
+                DbDataReader unReader = cmd.ExecuteReader(); try
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            Creneau unCreneau = new Creneau(unReader.GetInt32(0), unReader.GetString(1), unReader.GetString(2), unReader.GetString(3));
+                            lesCreneau.Add(unCreneau);
+                        }
+                    }
+                }
+                finally { Console.WriteLine("Erreur d'extraction des données de la table "); }                // fermeture de la connexion       
+                this.maConnexion.Close();          
+            }       
+            catch (Exception) {              
+                Console.WriteLine("Erreur d'éxécution de la requete: " + requete);            }      
+            return lesCreneau;    
+        }
+
+
+                public Medecin selectWhereMedecins(int numpers)
+        {
+            Medecin unMedecin = null;
+            string requete = "select * from personel where numpers = @numpers ;";
+            try
+            {
+                // ouverture de la connexion mysq
+                this.maConnexion.Open();
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+
+                cmd.CommandText = requete;
+
+
+
+                cmd.Parameters.AddWithValue("@numpers", numpers);
+
+                DbDataReader unReader = cmd.ExecuteReader();
+
+                try
+
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+
+                        {
+                            unMedecin = new Medecin(
+
+                            unReader.GetInt32(0), unReader.GetString(1), unReader.GetString(2), unReader.GetString(3), unReader.GetString(4),
+
+                            unReader.GetString(5), unReader.GetString(6), unReader.GetString(7), unReader.GetString(8));
+                        }
+
+                    }
+
+                }
+
+                finally
+                {
+                    Console.WriteLine("Erreur d'extraction des données de la table ");
+
+                }
+                // fermeture de la connexion
+                this.maConnexion.Close();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
+            }
+            return unMedecin;
+        }
 
     }
 }

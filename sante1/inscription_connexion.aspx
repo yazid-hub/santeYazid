@@ -78,6 +78,23 @@
 		</div>
 		<!--form area end-->
 
+
+		  <% 
+          if (Request.Form["seconnecter1"] != null){              
+				  string mail = Request.Form["eMail"];             
+				  string password = Request.Form["emdp"];
+              sante1.Medecin unMedecin = uneBDD.selectWhereMedecin(mail, password);
+              if (unMedecin != null)              {            
+					  Response.Redirect("Profile_Doctor.aspx?action=Medecin&numpers="+unMedecin.numPers + "");                  
+					  Session["Numpers"] = unMedecin.numPers;
+                  
+              } 
+				else  {                 
+					  Response.Write("Veuillez vérifier vos identifiant");            
+				  }
+          }
+        %>
+
 	
 		<% 
 	
@@ -101,6 +118,8 @@
                 uneBDD.insertPersonel(unPersonel); 
 
             }%>
+
+
 
 		<!--debut footer-->
      <footer>

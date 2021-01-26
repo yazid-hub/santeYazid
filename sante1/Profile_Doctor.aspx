@@ -22,10 +22,28 @@
   <body>
 
        <%
-      
-		sante1.Bdd uneBDD = new sante1.Bdd ("localhost","priserdv", "root","") ; //pas de mdp pour les PC 
-        
-        //instanciation d'une intervention de modification 
+
+           sante1.Bdd uneBDD = new sante1.Bdd ("localhost","priserdv", "root","") ; //pas de mdp pour les PC 
+
+           //instanciation d'une intervention de modification 
+           sante1.Medecin unMedecin = null;
+
+            if (Request["action"] != null && Request["numpers"] != null) 
+           {
+                string action = Request["action"];
+               int numpers = int.Parse(Request["numpers"]);
+               unMedecin = uneBDD.selectWhereMedecins(numpers);
+           }
+
+              sante1.Service unService = null;
+
+            if (Request["action"] != null && Request["numpers"] != null) 
+           {
+                string action = Request["action"];
+               int numpers = int.Parse(Request["numpers"]);
+               unService = uneBDD.selectWhereService(numpers);
+           }
+
         %>
       	<!--Menu Principale-->
 		    <nav>
@@ -50,8 +68,8 @@
       <div class="dashboard" id="fix">
           <div class="user">
             <img src="/img/88.jpg" alt="" />
-            <h3><a href="#">Yazid NAIT ALLOU</a></h3>
-            <p>MEDECIN GENIRALISTE</p>
+            <h3><a href="#"><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM %></a></h3>
+            <p><%=(unService==null)?" ":unService.LIBELLE %></p>
           </div>
           <div class="links">
             <div class="link">
@@ -208,15 +226,40 @@
         </div>
 
                           <div class="card1" id="dispo">
-		<div class="form" style="margin-top:60px; width:50%;">
-			<form class="login-form" action="" method="post">
-                <i class="far fa-calendar-plus" style="color:green;"></i><br />
-				Date :  <input class="user-input"  type="date" name="date" placeholder="date" required ><br />
-				Heure début:<input class="user-input" type="time" name="heure" placeholder="heure" required><br />
-				Heure Fin :<input class="user-input" type="time" name="heureFin" placeholder="heure" required>
-			<input class="btn" type="submit" name="Ajouter" value="Ajouter">	
-			</form>
-            </div>
+		
+         <% string chaine = "<table border= 1 > <tr> <td>Date </td> <td> Heure debut </td> ";
+             chaine += " <td> heure fin </td><td>Opération</td></tr> ";
+        List<sante1.Creneau> lesCreneau = uneBDD.selectAllCreneau ();
+        foreach(sante1.Creneau unCreneau in lesCreneau)
+             {
+                 chaine += "<tr> <td>" + unCreneau.DATE+ "</td> <td> " + unCreneau.HEURE+ "</td> <td>" + unCreneau.HEUREFIN + "</td><td> ajouter</td> <td> " 
+
+                + "<td>";
+             }
+             chaine += "</table>";%>
+
+        
+                <%= chaine %>
+
+
+                               <% 
+                                   
+                                   string chaine2 = "<table border= 1 > <tr> <td>Date </td> <td> Heure debut </td> ";
+
+                                   chaine2 += " <td> heure fin </td><td>Opération</td></tr> ";
+                                     int numpers2 = int.Parse(Request["numpers"]);
+                                   List<sante1.Medecin_Creneau> lesCreneauMedecin = uneBDD.selectWhereMedecinCreneau(numpers2);
+                                   foreach(sante1.Medecin_Creneau unCreneauMedecin in lesCreneauMedecin)
+                                   {
+                                       chaine2 += "<tr> <td>" + unCreneauMedecin.ID+ "</td> <td> " + unCreneauMedecin.NUMPERS+ "</td> <td>" 
+
+                                      + "<td>";
+                                   }
+                                   chaine2 += "</table>";%>
+
+        
+                <%= chaine2 %>
+        
         </div>
 
                           <div class="card1" id="fichePaie">
