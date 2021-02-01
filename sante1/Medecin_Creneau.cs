@@ -9,17 +9,68 @@ namespace sante1
     {
         private int id;
         private int numpers;
-
+        private string heure;
+        private string date;
+        private string heuref;
         
 
         public Medecin_Creneau(int id, int numpers, string date, string heure)
         {
             this.id = id;
             this.numpers = numpers;
+            this.date = date;
+            this.heure = heure;
          
         }
+        public Medecin_Creneau(int id, int numpers)
+        {
+            this.id = id;
+            this.numpers = numpers;
+           
+        }
 
+        public Medecin_Creneau(string date, string heure , string heuref)
+        {
+           
+            this.date = date;
+            this.heure = heure;
+            this.heuref = heuref;
 
+        }
+        public string DATE
+        {
+            get
+            {
+                return date;
+            }
+            set
+            {
+                this.date = value;
+            }
+        }
+        public string Heure
+        {
+            get
+            {
+                return heure;
+            }
+            set
+            {
+                this.heure = value;
+            }
+        }
+
+        public string HeureF
+        {
+            get
+            {
+                return heuref;
+            }
+            set
+            {
+                this.heuref = value;
+            }
+        }
         public int ID
         {
             get

@@ -68,8 +68,10 @@
       <div class="dashboard" id="fix">
           <div class="user">
             <img src="/img/88.jpg" alt="" />
-            <h3><a href="EditeMedecin.aspx"><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM %></a></h3>
+            <h3><a href= EditeMedecin.aspx><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM+"  " %></a>  <%=" <a class='fas fa-pen' href='EditeMedecin.aspx?action=edit&numpers=" +unMedecin.numPers + "'></a>"%></h3>
             <p><%=(unService==null)?" ":unService.LIBELLE %></p>
+          <p>  </p>
+         
           </div>
           <div class="links">
             <div class="link">
@@ -137,84 +139,72 @@
 
                                      <tbody>
                                          <tr>
-                                            <td><small>7:00 am</small></td>
+                                            <td><small>9:00 </small></td>
                                             <td>
                                                 <strong>travail</strong>
-                                                <span>7:00 am - 9:00 am</span>
+                                                <span>9:00  - 12:00 </span>
                                             </td>
                                             <td>
                                                 <strong>travail</strong>
-                                                <span>7:00 am - 9:00 am</span>
+                                                <span>9:00  - 12:00 </span>
                                             </td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><strong>travail</strong>
+                                                <span>9:00  - 12:00 </span></td>
+                                            <td><strong>travail</strong>
+                                                <span>9:00  - 12:00 </span></td>
                                             <td>
                                                 <strong>travail</strong>
-                                                <span>7:00 am - 9:00 am</span>
+                                                <span>9:00  - 12:00 </span>
                                             </td>
-                                              <td></td>
+                                              <td><strong>travail</strong>
+                                                <span>9:00  - 12:00 </span></td>
                                             
                                          </tr>
 
                                          <tr>
-                                            <td><small>9:00 am</small></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><small>12:00 am</small></td>
+                                            <td><strong>Pause</strong>
+                                                <span>12:00  -13:00 </span></td>
+                                            <td><strong>Pause</strong>
+                                                <span>12:00  -13:00 </span></td>
                                             <td>
-                                                <strong>travail</strong>
-                                                <span>8:00 am - 9:00 am</span>
+                                                <strong>Pause</strong>
+                                                <span>12:00  -13:00 </span>
                                             </td>
                                             <td>
-                                                <strong>travail</strong>
-                                                <span>8:00 am - 9:00 am</span>
+                                                <strong>Pause</strong>
+                                                <span>12:00  - 13:00 </span>
                                             </td>
-                                            <td></td>
+                                            <td><strong>Pause</strong>
+                                                <span>12:00  -13:00 </span></td>
                                             <td>
-                                                <strong>travail</strong>
-                                                <span>8:00 am - 9:00 am</span>
+                                                <strong>Pause</strong>
+                                                <span>12:00  - 13:00 </span>
                                             </td>
                                          </tr>
 
                                          <tr>
-                                            <td><small>11:00 am</small></td>
-                                            <td></td>
+                                            <td><small>13:00 </small></td>
+                                            <td><strong>travail</strong>
+                                                <span>13:00  - 17:00 </span></td>
                                             <td>
                                                 <strong>travail</strong>
-                                                <span>11:00 am - 2:00 pm</span>
+                                                <span>13:00  - 17:00 </span>
                                             </td>
                                             <td>
                                                 <strong>travail</strong>
-                                                <span>11:30 am - 3:30 pm</span>
+                                                <span>13:00  - 17:00 </span>
                                             </td>
-                                            <td></td>
+                                            <td><strong>travail</strong>
+                                                <span>13:00  - 17:00 </span></td>
                                             <td>
                                                 <strong>travail</strong>
-                                                <span>11:50 am - 5:20 pm</span>
+                                                <span>13:00  - 17:00 </span>
                                                 <td></td>
                                             </td>
                                          </tr>
 
-                                         <tr>
-                                            <td><small>2:00 pm</small></td>
-                                            <td>
-                                                <strong>travail</strong>
-                                                <span>2:00 pm - 4:00 pm</span>
-                                            </td>
-                                            <td>
-                                                <strong>travail</strong>
-                                                <span>3:00 pm - 6:00 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>travail</strong>
-                                                <span>6:00 pm - 9:00 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>travail</strong>
-                                                <span>5:00 pm - 7:00 pm</span>
-                                            </td>
-                                         </tr>
+                                         
                                      </tbody>
                                  </table>
                              </div>
@@ -227,12 +217,12 @@
 
                           <div class="card1" id="dispo">
 		<div class="creneau">
-         <% string chaine = "<table border= 1 > <tr> <td>Date </td> <td> Heure debut </td> ";
+         <% string chaine = "<table border= 1 > <tr> <td>ID </td><td>Date </td> <td> Heure debut </td> ";
              chaine += " <td> heure fin </td><td>Opération</td></tr> ";
         List<sante1.Creneau> lesCreneau = uneBDD.selectAllCreneau ();
         foreach(sante1.Creneau unCreneau in lesCreneau)
              {
-                 chaine += "<tr> <td>" + unCreneau.DATE+ "</td> <td> " + unCreneau.HEURE+ "</td> <td>" + unCreneau.HEUREFIN + "</td><td> ajouter</td>  " 
+                 chaine += "<tr> <td>" + unCreneau.ID+ "</td><td>" + unCreneau.DATE+ "</td> <td> " + unCreneau.HEURE+ "</td> <td>" + unCreneau.HEUREFIN + "</td><td> <form><button name='ajouter'>ajouter</button></form></td>  " 
 
                 ;
              }
@@ -240,18 +230,40 @@
 
         
                 <%= chaine %>
-            </div>
+            </div>  
+
+
+
+                              <%
+                                  if (Request["action"] != null &&  Request["id"]!=null)
+                                  {
+                                     
+                                      int id1 = int.Parse(Request["id"]);
+                                      string action = Request["action"];
+
+                                      if (action == "sup")
+                                      {
+                                          //suppression de l'intervention identifiée par id 
+                                          uneBDD.deleteMedecin_creneau(id1);
+
+                                      }
+                                  }%>
 
                                <% 
-                                   
+
+
+
+
                                    string chaine2 = "<table border= 1 > <tr> <td>Date </td> <td> Heure debut </td> ";
 
                                    chaine2 += " <td> heure fin </td><td>Opération</td></tr> ";
-                                     int numpers2 = int.Parse(Request["numpers"]);
+
+                                   int numpers2 = int.Parse(Request["numpers"]);
+                                   
                                    List<sante1.Medecin_Creneau> lesCreneauMedecin = uneBDD.selectWhereMedecinCreneau(numpers2);
                                    foreach(sante1.Medecin_Creneau unCreneauMedecin in lesCreneauMedecin)
                                    {
-                                       chaine2 += "<tr> <td>" + unCreneauMedecin.ID+ "</td> <td> " + unCreneauMedecin.NUMPERS+ "</td> <td>" 
+                                       chaine2 += "<tr> <td>"+ unCreneauMedecin.DATE+ "</td> <td> " + unCreneauMedecin.Heure+ "</td> <td>" + unCreneauMedecin.HeureF+"</td> <td> <a href='Profile_Doctor.aspx?action=sup&id1=" + unCreneauMedecin.ID + "'> Supprimer</a>"
 
                                       + "<td>";
                                    }
@@ -259,14 +271,56 @@
 
         
                 <%= chaine2 %>
+
+
+                              <form class="login-form" action="" method="post">
+				<input class="user-input"  type="number" name="id" placeholder="Chiffre 1" required >
+				<input class="user-input" type="number" name="NumPers" placeholder="Chiffre 2" required>
+				
+				
+			<input class="btn" type="submit" name="valider" value="Confirmer" onclick='valider()'>
+			</form>
+                              
+		<% 
+
+            if(Request.Form["valider"] != null )
+            {
+                int id = int.Parse(Request.Form["id"]);
+                int numpers = int.Parse(Request.Form["NumPers"]);
+               
+                //instanciation de la classe intervention 
+                sante1.Medecin_Creneau unMedecinCreneau = new sante1.Medecin_Creneau(id, numpers);
+
+                //insertion dans la base de données de l'intervention saisie 
+                uneBDD.insertMedecin_Creneu(unMedecinCreneau);
+
+            }
+            %>
+                              
+                              <%
+                                  
+
+                                  if (Request.Form["ajouter"] != null && Request["numpers"] != null)
+                                  {
+
+                                      string ajouter = Request["ajouter"];
+                                      int numpers3 = int.Parse(Request["numpers"]);
+
+                                      int id = int.Parse(Request["id"]);
+                                      sante1.Medecin_Creneau unMedecin_Creneau = new sante1.Medecin_Creneau(id, numpers3);
+
+                                      uneBDD.insertMedecin_Creneu(unMedecin_Creneau);
+
+                                  }
+                                  %>
         
         </div>
 
                           <div class="card1" id="fichePaie">
 		
-
-
-
+                              <input type="month" id="start" name="start" min="2015-03" value="2015-05" />
+                            
+    
         </div>
 
                <div class="card1" id="document">
@@ -306,11 +360,15 @@
                 //insertion dans la base de données de l'intervention saisie 
                 uneBDD.insertCreneu(unCreneau); 
 
-            }%>
+            }
+            %>
 
       <style>   
 /* Style profile*/
-
+#start{
+    height:50px;
+    width:200px;
+}
 
 .creneau td{
     background :green;

@@ -31,7 +31,7 @@
             unMedec = uneBDD.selectWhereMedecins(numpers); 
         }
         %>
-
+    
 
     	<!--Menu Principale-->
 		    <nav>
@@ -55,15 +55,15 @@
         <!--login form start-->
 			<form class="login-form" action="" method="post">
 			  <i class="fas fa-user-edit" style="color: green;"></i><br />
-          NOM:  <input class="user-input" type="text" name="Nom"  id="nom" value="<%=(unMedec==null)?" ":unMedec.NOM  %>" required onblur="traiterNom()"><br />
+          NOM:  <input class="user-input" type="text" name="Nom"  id="nom" value="<%=(unMedec==null)?" ":unMedec.NOM %>" required onblur="traiterNom()"><br />
            Prenom: <input class="user-input" type="text" name="Prenom"  id="Prenom" value="<%=(unMedec==null)?" ":unMedec.PRENOM  %>" required onblur="traiterPrenom()"><br />
             Mail :<input class="user-input" type="text" name="Mail"  required id="email" value="<%=(unMedec==null)?" ":unMedec.MAIL  %>" required onblur="validate()"><br />
             <span id="msge"></span>
            Adresse : <input class="user-input" type="text" name="Adress"  required id="adress" value="<%=(unMedec==null)?" ":unMedec.ADRESSE  %>" required onblur=""><br />
            Ville <input class="user-input" type="text" name="Ville" required id="ville" value="<%=(unMedec==null)?" ":unMedec.VILLE  %>" required onblur=""><br />
            Telephone: <input class="user-input" type="text" name="Tel" id="telephone" value="<%=(unMedec==null)?" ":unMedec.TEL  %>" required onblur="traiterNumero()"><br />
-            Date D'embauche<input class="user-input" type="text" name="DateEmbauche"  required id="dateEmbauche" value="<%=(unMedec==null)?" ":unMedec.DATEEMBAUCHE  %>" required onblur=""><br />
-            Mote de passe : <input class="user-input" type="password" name="mdp" id="mdp"  value="<%=(unMedec==null)?" ":unMedec.PASSWORD  %>" required onblur="checkmdp()">
+            Date D'embauche<input class="user-input" type="text" name="DateEmbauche"  required id="dateEmbauche" value="<%=(unMedec==null)?" ":unMedec.DATEEMBAUCHE  %>" required onblur="" disabled><br />
+            Mote de passe : <input class="user-input" type="text" name="mdp" id="mdp"  value="<%=(unMedec==null)?" ":unMedec.PASSWORD  %>" required onblur="checkmdp()">
             <span id="msg"></span>
 				  <input class="btn" type="submit" name="Modifier" value="Modifier">
 			</form>
@@ -73,7 +73,7 @@
 	    <% if (Request.Form["Modifier"] != null)
                     {
                         //mise à jour de l'intervention identifiée par id 
-                        int numpers = int.Parse(Request.Form["numpers"]); 
+                        
                         string Nom = Request.Form["Nom"]; 
                         string Prenom = Request.Form["Prenom"]; 
                         string Mail = Request.Form["Mail"]; 
@@ -84,7 +84,7 @@
                         string mdp = Request.Form["mdp"];
                 
                         //instanciation de la classe intervention 
-                        sante1.Medecin unMedecin = new sante1.Medecin(numpers, Nom, Prenom, Mail, Adress, Ville, Tel,DateEmbauche,mdp); 
+                        sante1.Medecin unMedecin = new sante1.Medecin( Nom, Prenom, Mail, Adress, Ville, Tel,DateEmbauche,mdp); 
                         //mise à jour dans la base 
                         uneBDD.updateMedecin(unMedecin); 
                     } %>

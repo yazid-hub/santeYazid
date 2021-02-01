@@ -142,7 +142,7 @@ namespace sante1
                     {
                         while (unReader.Read())
                         {
-                            Medecin_Creneau unCreneauMedecin = new Medecin_Creneau(unReader.GetInt32(6), unReader.GetInt32(7), unReader.GetString(6),unReader.GetString(7)) ;
+                            Medecin_Creneau unCreneauMedecin = new Medecin_Creneau( unReader.GetString(3),unReader.GetString(4), unReader.GetString(5)) ;
                           
                             lesCreneauMedecin.Add(unCreneauMedecin);
                         }
@@ -301,7 +301,7 @@ namespace sante1
             {
                 this.maConnexion.Open();
 
-                requete = "update Medecin set nom= @nom, Prenom= @Prenom, Mail= @Mail , Adress =@Adress,ville = @Ville, Tel = @Tel, DateEmbauche=@DateEmbauche,mdp=@mdp where numpers = @numpers ;";
+                requete = "update Personel set nom= @nom, Prenom= @Prenom, Mail= @Mail , Adress =@Adress,ville = @Ville, Tel = @Tel, DateEmbauche=@DateEmbauche,mdp=@mdp where numpers = @numpers ;";
 
                 MySqlCommand cmd = this.maConnexion.CreateCommand();
 
@@ -367,6 +367,34 @@ namespace sante1
                     Console.WriteLine("Erreur d'éxécution de la requete: " + requete);
                  }
                      return unMedecin;
+        }
+
+        public void deleteMedecin_creneau(int id)
+        {
+            string requete = "";
+            try
+            {
+                this.maConnexion.Open();
+
+                requete = "delete from medecin_creneau where id = @id  ;";
+
+                MySqlCommand cmd = this.maConnexion.CreateCommand();
+
+                cmd.CommandText = requete;
+
+                //correspondance des parametres et des valeurs
+                cmd.Parameters.AddWithValue("@id", id);
+
+                //on execute la requete
+                cmd.ExecuteNonQuery();
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur d'execution de la requete :" + requete);
+                Console.WriteLine(exp.Message);
+            }
         }
 
     }
