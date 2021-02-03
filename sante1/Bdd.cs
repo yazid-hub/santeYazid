@@ -301,7 +301,7 @@ namespace sante1
             {
                 this.maConnexion.Open();
 
-                requete = "update Personel set nom= @nom, Prenom= @Prenom, Mail= @Mail , Adress =@Adress,ville = @Ville, Tel = @Tel, DateEmbauche=@DateEmbauche,mdp=@mdp where numpers = @numpers ;";
+                requete = "update Medecin set nom= @nom, Prenom= @Prenom, Mail= @Mail , Adress =@Adress,ville = @Ville, Tel = @Tel, DateEmbauche=@DateEmbauche,mdp=@mdp where numpers = @numpers ;";
 
                 MySqlCommand cmd = this.maConnexion.CreateCommand();
 

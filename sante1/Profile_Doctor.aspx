@@ -68,7 +68,7 @@
       <div class="dashboard" id="fix">
           <div class="user">
             <img src="/img/88.jpg" alt="" />
-            <h3><a href= EditeMedecin.aspx><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM+"  " %></a>  <%=" <a class='fas fa-pen' href='EditeMedecin.aspx?action=edit&numpers=" +unMedecin.numPers + "'></a>"%></h3>
+            <h3><a href=><%=(unMedecin==null)?" ":unMedecin.NOM +" "+unMedecin.PRENOM+"  " %></a>  <%=" <a class='fas fa-pen' href='EditeMedecin.aspx?action=edit&numpers=" +unMedecin.numPers + "'></a>"%></h3>
             <p><%=(unService==null)?" ":unService.LIBELLE %></p>
           <p>  </p>
          
